@@ -1,54 +1,33 @@
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
-# Instalação de pacotes necessários
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    openjdk-8-jdk \
-    openssh-server \
-    openssh-client \
-    rsync \
-    wget \
-    nano \
-    sudo
-
-# Configuração do ambiente Java
+ENV DEBIAN_FRONTEND=noninteractive
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-ENV PATH=$PATH:$JAVA_HOME/bin
+ENV HADOOP_HOME=/home/hadoop/hadoop
+ENV PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
-# Configuração do SSH
-RUN mkdir /var/run/sshd
-RUN echo 'root:root' | chpasswd
-RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN apt-get update && \
+    apt-get install -y openssh-server openssh-client openjdk-8-jdk wget && \
+    mkdir /run/sshd
 
-# Configuração do usuário Hadoop
 RUN useradd -m -s /bin/bash hadoop && \
     echo "hadoop:hadoop" | chpasswd && \
     adduser hadoop sudo
 
-# Gerar chaves SSH para o usuário hadoop
-RUN su - hadoop -c "ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa && \
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    chmod 0600 ~/.ssh/authorized_keys"
-
-WORKDIR /home/hadoop
-USER root
-
-# Download e instalação do Hadoop
-RUN wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && \
-    tar -xzf hadoop-3.3.6.tar.gz && \
-    mv hadoop-3.3.6 /opt/hadoop && \
+RUN mkdir -p /home/hadoop/hadoop && \
+    wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && \
+    tar -xzf hadoop-3.3.6.tar.gz -C /home/hadoop/hadoop --strip-components=1 && \
     rm hadoop-3.3.6.tar.gz
 
-ENV HADOOP_HOME=/opt/hadoop
-ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
+RUN chown -R hadoop:hadoop /home/hadoop/hadoop
 
-RUN chown -R hadoop:hadoop $HADOOP_HOME
+USER hadoop
+RUN ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa && \
+    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
+    chmod 0600 ~/.ssh/authorized_keys
+
+USER root
+RUN mkdir -p /tmp/hadoop-hadoop/dfs/name && \
+    mkdir -p /tmp/hadoop-hadoop/dfs/data && \
+    chown -R hadoop:hadoop /tmp/hadoop-hadoop
 
 CMD ["/usr/sbin/sshd", "-D"]
-WORKDIR /home/hadoop
-
-RUN wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz && \
-    tar -xzf hadoop-3.3.6.tar.gz && mv hadoop-3.3.6 hadoop
-
-ENV HADOOP_HOME=/home/hadoop/hadoop
-ENV PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
