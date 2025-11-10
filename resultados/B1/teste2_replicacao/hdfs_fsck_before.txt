@@ -1,27 +1,30 @@
 Connecting to namenode via http://master:9870/fsck?ugi=hadoop&files=1&blocks=1&locations=1&path=%2Fuser%2Fhadoop%2Fwordcount%2Finput
-FSCK started by hadoop (auth:SIMPLE) from /192.168.128.2 for path /user/hadoop/wordcount/input at Mon Nov 10 03:56:54 UTC 2025
+FSCK started by hadoop (auth:SIMPLE) from /192.168.176.2 for path /user/hadoop/wordcount/input at Mon Nov 10 04:17:54 UTC 2025
 
 /user/hadoop/wordcount/input <dir>
+/user/hadoop/wordcount/input/big.txt 676000 bytes, replicated: replication=1, 1 block(s):  OK
+0. BP-329536089-192.168.176.2-1762748230976:blk_1073741825_1001 len=676000 Live_repl=1  [DatanodeInfoWithStorage[192.168.176.4:9866,DS-aa5433c2-2a84-4dbb-b0c5-98f269ee1013,DISK]]
+
 
 Status: HEALTHY
- Number of data-nodes:	0
- Number of racks:		0
+ Number of data-nodes:	2
+ Number of racks:		1
  Total dirs:			1
  Total symlinks:		0
 
 Replicated Blocks:
- Total size:	0 B
- Total files:	0
- Total blocks (validated):	0
- Minimally replicated blocks:	0
- Over-replicated blocks:	0
- Under-replicated blocks:	0
- Mis-replicated blocks:		0
+ Total size:	676000 B
+ Total files:	1
+ Total blocks (validated):	1 (avg. block size 676000 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
  Default replication factor:	1
- Average block replication:	0.0
+ Average block replication:	1.0
  Missing blocks:		0
  Corrupt blocks:		0
- Missing replicas:		0
+ Missing replicas:		0 (0.0 %)
  Blocks queued for replication:	0
 
 Erasure Coded Block Groups:
@@ -37,7 +40,7 @@ Erasure Coded Block Groups:
  Corrupt block groups:		0
  Missing internal blocks:	0
  Blocks queued for replication:	0
-FSCK ended at Mon Nov 10 03:56:54 UTC 2025 in 7 milliseconds
+FSCK ended at Mon Nov 10 04:17:54 UTC 2025 in 9 milliseconds
 
 
 The filesystem under path '/user/hadoop/wordcount/input' is HEALTHY

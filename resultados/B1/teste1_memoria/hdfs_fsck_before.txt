@@ -1,9 +1,9 @@
 Connecting to namenode via http://master:9870/fsck?ugi=hadoop&files=1&blocks=1&locations=1&path=%2Fuser%2Fhadoop%2Fwordcount%2Finput
-FSCK started by hadoop (auth:SIMPLE) from /192.168.128.2 for path /user/hadoop/wordcount/input at Mon Nov 10 03:55:26 UTC 2025
+FSCK started by hadoop (auth:SIMPLE) from /192.168.176.2 for path /user/hadoop/wordcount/input at Mon Nov 10 04:16:23 UTC 2025
 
 /user/hadoop/wordcount/input <dir>
 /user/hadoop/wordcount/input/big.txt 676000 bytes, replicated: replication=2, 1 block(s):  OK
-0. BP-718653521-192.168.128.2-1762746817107:blk_1073741825_1001 len=676000 Live_repl=2  [DatanodeInfoWithStorage[192.168.128.3:9866,DS-e1860104-c642-4807-9b96-351ded2e8ca9,DISK], DatanodeInfoWithStorage[192.168.128.4:9866,DS-a0397783-73a6-4061-896a-46daa30915b5,DISK]]
+0. BP-860249070-192.168.176.2-1762748071606:blk_1073741825_1001 len=676000 Live_repl=2  [DatanodeInfoWithStorage[192.168.176.4:9866,DS-de3c3fdf-f52e-4447-95cd-e3efcf435886,DISK], DatanodeInfoWithStorage[192.168.176.3:9866,DS-f736c295-7625-4d91-8d68-3187d1905012,DISK]]
 
 
 Status: HEALTHY
@@ -40,7 +40,7 @@ Erasure Coded Block Groups:
  Corrupt block groups:		0
  Missing internal blocks:	0
  Blocks queued for replication:	0
-FSCK ended at Mon Nov 10 03:55:26 UTC 2025 in 11 milliseconds
+FSCK ended at Mon Nov 10 04:16:23 UTC 2025 in 9 milliseconds
 
 
 The filesystem under path '/user/hadoop/wordcount/input' is HEALTHY

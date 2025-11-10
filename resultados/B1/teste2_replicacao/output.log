@@ -6,7 +6,7 @@ Extraindo métricas...
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:56:58 UTC 2025
+Timestamp: Mon Nov 10 04:17:56 UTC 2025
 Duração Total: 0s
 Application ID: 
 
@@ -22,6 +22,7 @@ Map Reducers:
 1
 
 === INFORMAÇÕES DO INPUT ===
+660.2 K  660.2 K  /user/hadoop/wordcount/input/big.txt
 
 --- MÉTRICAS DO JOB ---
 Status: FALHA ✗
@@ -43,5 +44,5 @@ Copiando resultados do container...
 
 =========================================
 Teste do WordCount concluído!
-Resultados salvos em: ./resultados/execucao_20251110_005702
+Resultados salvos em: ./resultados/execucao_20251110_011800
 =========================================

@@ -9,3 +9,4 @@ Map Reducers:
 1
 
 === INFORMAÇÕES DO INPUT ===
+660.2 K  660.2 K  /user/hadoop/wordcount/input/big.txt

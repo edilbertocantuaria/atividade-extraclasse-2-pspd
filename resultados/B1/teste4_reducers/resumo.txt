@@ -7,8 +7,8 @@ Configuração: mapreduce.job.reduces=4
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:58:46 UTC 2025
-Duração Total: 1s
+Timestamp: Mon Nov 10 04:19:52 UTC 2025
+Duração Total: 0s
 Application ID: 
 
 --- CONFIGURAÇÕES ---
@@ -23,6 +23,7 @@ Map Reducers:
 4
 
 === INFORMAÇÕES DO INPUT ===
+660.2 K  660.2 K  /user/hadoop/wordcount/input/big.txt
 
 --- MÉTRICAS DO JOB ---
 Status: FALHA ✗

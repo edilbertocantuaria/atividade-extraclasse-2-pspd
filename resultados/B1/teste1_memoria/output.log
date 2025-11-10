@@ -6,7 +6,7 @@ Extraindo métricas...
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:55:29 UTC 2025
+Timestamp: Mon Nov 10 04:16:26 UTC 2025
 Duração Total: 0s
 Application ID: 
 
@@ -44,5 +44,5 @@ Copiando resultados do container...
 
 =========================================
 Teste do WordCount concluído!
-Resultados salvos em: ./resultados/execucao_20251110_005533
+Resultados salvos em: ./resultados/execucao_20251110_011629
 =========================================

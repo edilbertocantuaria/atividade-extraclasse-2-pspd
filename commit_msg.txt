@@ -1,0 +1,35 @@
+fix(hadoop): corrigir incompatibilidade de clusterID dos DataNodes
+
+BREAKING FIX: DataNodes não iniciavam devido a clusterID incompatível com NameNode
+
+Problema:
+- Ao formatar o NameNode, um novo clusterID é gerado
+- DataNodes mantinham clusterID antigo em /tmp/hadoop-hadoop/dfs/data
+- Erro: Incompatible clusterIDs impedia registro dos DataNodes
+- Resultado: 0 datanodes running, impossível armazenar dados no HDFS
+
+Solução:
+- Criado scripts/limpar_datanodes.sh para limpar dados antigos
+- Integrado limpeza em rodar_testes_b1_v2.sh após cada format
+- Integrado limpeza em corrigir_tudo.sh no setup inicial
+- Aumentado sleep após start-dfs.sh de 10s para 15s
+
+Sequência correta:
+1. hdfs namenode -format -force (gera novo clusterID)
+2. limpar_datanodes (remove clusterID antigo dos workers)
+3. start-dfs.sh (DataNodes se registram com novo ID)
+4. sleep 15 (aguarda estabilização)
+
+Arquivos:
++ scripts/limpar_datanodes.sh - Script de limpeza dos DataNodes
++ CORRECAO_CLUSTERID.md - Documentação técnica completa
++ teste_rapido.sh - Script de validação rápida
+~ scripts/rodar_testes_b1_v2.sh - Integrado limpeza
+~ corrigir_tudo.sh - Adicionado passo de limpeza
+
+Validação:
+✅ DataNodes agora iniciam corretamente
+✅ hdfs dfsadmin -report mostra 2 datanodes ativos
+✅ Testes B1 podem executar com sucesso
+
+Resolves: Falha crítica que impedia execução de todos os 4 testes B1

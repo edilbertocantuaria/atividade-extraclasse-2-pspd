@@ -1,7 +1,7 @@
 ========================================================================
            RELATÓRIO - TESTES HADOOP (B1)
 ========================================================================
-Data: Mon Nov 10 00:58:49 -03 2025
+Data: Mon Nov 10 01:19:55 -03 2025
 
 ========== teste1_memoria ==========
 ==============================
@@ -13,7 +13,7 @@ Configuração: yarn.nodemanager.resource.memory-mb=1024
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:55:29 UTC 2025
+Timestamp: Mon Nov 10 04:16:26 UTC 2025
 Duração Total: 0s
 Application ID: 
 
@@ -58,7 +58,7 @@ Configuração: dfs.replication=1
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:56:58 UTC 2025
+Timestamp: Mon Nov 10 04:17:56 UTC 2025
 Duração Total: 0s
 Application ID: 
 
@@ -74,6 +74,7 @@ Map Reducers:
 1
 
 === INFORMAÇÕES DO INPUT ===
+660.2 K  660.2 K  /user/hadoop/wordcount/input/big.txt
 
 --- MÉTRICAS DO JOB ---
 Status: FALHA ✗
@@ -102,7 +103,7 @@ Configuração: dfs.blocksize=64MB
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:58:22 UTC 2025
+Timestamp: Mon Nov 10 04:19:29 UTC 2025
 Duração Total: 0s
 Application ID: 
 
@@ -118,6 +119,7 @@ Map Reducers:
 1
 
 === INFORMAÇÕES DO INPUT ===
+660.2 K  660.2 K  /user/hadoop/wordcount/input/big.txt
 
 --- MÉTRICAS DO JOB ---
 Status: FALHA ✗
@@ -146,8 +148,8 @@ Configuração: mapreduce.job.reduces=4
        RELATÓRIO DE EXECUÇÃO - WORDCOUNT
 ==================================================
 
-Timestamp: Mon Nov 10 03:58:46 UTC 2025
-Duração Total: 1s
+Timestamp: Mon Nov 10 04:19:52 UTC 2025
+Duração Total: 0s
 Application ID: 
 
 --- CONFIGURAÇÕES ---
@@ -162,6 +164,7 @@ Map Reducers:
 4
 
 === INFORMAÇÕES DO INPUT ===
+660.2 K  660.2 K  /user/hadoop/wordcount/input/big.txt
 
 --- MÉTRICAS DO JOB ---
 Status: FALHA ✗
