@@ -4,4 +4,8 @@
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
     </property>
+    <property>
+        <name>mapreduce.job.reduces</name>
+        <value>4</value>
+    </property>
 </configuration>

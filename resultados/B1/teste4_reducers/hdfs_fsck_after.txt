@@ -1,0 +1,3 @@
+FileSystem is inaccessible due to:
+java.io.FileNotFoundException: File does not exist: /user/hadoop/wordcount/output
+DFSck exiting.

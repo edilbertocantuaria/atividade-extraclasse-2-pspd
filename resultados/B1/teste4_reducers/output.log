@@ -1,0 +1,47 @@
+Executando teste de WordCount...
+Executando WordCount...
+Salvando resultados...
+Extraindo métricas...
+==================================================
+       RELATÓRIO DE EXECUÇÃO - WORDCOUNT
+==================================================
+
+Timestamp: Mon Nov 10 03:58:46 UTC 2025
+Duração Total: 1s
+Application ID: 
+
+--- CONFIGURAÇÕES ---
+=== CONFIGURAÇÕES DO CLUSTER ===
+YARN Memory:
+1024
+HDFS Replication:
+1
+HDFS Block Size:
+67108864
+Map Reducers:
+4
+
+=== INFORMAÇÕES DO INPUT ===
+
+--- MÉTRICAS DO JOB ---
+Status: FALHA ✗
+Contadores não disponíveis
+
+--- RECURSOS DO SISTEMA ---
+
+--- RESULTADOS ---
+Palavras únicas encontradas: 1
+
+Top 10 palavras mais frequentes:
+Erro ao recuperar output
+
+--- INFORMAÇÕES DO OUTPUT (HDFS) ---
+du: `/user/hadoop/wordcount/output': No such file or directory
+
+==================================================
+Copiando resultados do container...
+
+=========================================
+Teste do WordCount concluído!
+Resultados salvos em: ./resultados/execucao_20251110_005849
+=========================================

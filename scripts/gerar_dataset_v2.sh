@@ -16,7 +16,7 @@ docker exec -u hadoop hadoop-master ls -l /home/hadoop/base.txt
 
 # Etapa 3: Gerar arquivo grande
 echo "Gerando arquivo grande..."
-docker exec -u hadoop hadoop-master bash -c "for i in \$(seq 1 2000); do cat /home/hadoop/base.txt >> /home/hadoop/big.txt; done"
+docker exec -u hadoop hadoop-master bash -c "for i in \$(seq 1 2000); do cat /home/hadoop/base.txt; done > /home/hadoop/big.txt"
 
 # Etapa 4: Verificar tamanho do arquivo grande
 echo "Verificando arquivo grande..."

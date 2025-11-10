@@ -20,6 +20,12 @@ RUN mkdir -p /home/hadoop/hadoop && \
 
 RUN chown -R hadoop:hadoop /home/hadoop/hadoop
 
+# Configurar JAVA_HOME no hadoop-env.sh
+RUN echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /home/hadoop/hadoop/etc/hadoop/hadoop-env.sh && \
+    echo 'export HADOOP_HOME=/home/hadoop/hadoop' >> /home/hadoop/hadoop/etc/hadoop/hadoop-env.sh && \
+    echo 'export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop' >> /home/hadoop/hadoop/etc/hadoop/hadoop-env.sh && \
+    chown hadoop:hadoop /home/hadoop/hadoop/etc/hadoop/hadoop-env.sh
+
 USER hadoop
 RUN ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa && \
     cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \

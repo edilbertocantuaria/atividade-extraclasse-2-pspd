@@ -1,0 +1,12 @@
+=== CONFIGURAÇÕES DO CLUSTER ===
+YARN Memory:
+1024
+HDFS Replication:
+2
+HDFS Block Size:
+134217728
+Map Reducers:
+1
+
+=== INFORMAÇÕES DO INPUT ===
+660.2 K  1.3 M  /user/hadoop/wordcount/input/big.txt

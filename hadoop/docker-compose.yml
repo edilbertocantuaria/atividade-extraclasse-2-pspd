@@ -1,4 +1,3 @@
-version: "3"
 services:
   master:
     build: .
@@ -10,7 +9,7 @@ services:
       - "9000:9000"  # HDFS
       - "22:22"      # SSH
     volumes:
-      - ./master:/opt/hadoop/etc/hadoop
+      - ./master:/home/hadoop/hadoop/etc/hadoop
     command: bash -c "/usr/sbin/sshd && tail -f /dev/null"
     privileged: true
 
@@ -22,7 +21,7 @@ services:
     ports:
       - "22"  # SSH
     volumes:
-      - ./worker1:/opt/hadoop/etc/hadoop
+      - ./worker1:/home/hadoop/hadoop/etc/hadoop
     command: bash -c "/usr/sbin/sshd && tail -f /dev/null"
     privileged: true
 
@@ -34,7 +33,7 @@ services:
     ports:
       - "22"  # SSH
     volumes:
-      - ./worker2:/opt/hadoop/etc/hadoop
+      - ./worker2:/home/hadoop/hadoop/etc/hadoop
     command: bash -c "/usr/sbin/sshd && tail -f /dev/null"
     privileged: true
 
