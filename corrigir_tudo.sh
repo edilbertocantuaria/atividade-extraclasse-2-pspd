@@ -27,6 +27,13 @@ sleep 15
 cd ..
 
 echo ""
+echo "4️⃣  Limpando dados antigos dos DataNodes..."
+for worker in worker1 worker2; do
+    docker exec hadoop-$worker bash -c "rm -rf /tmp/hadoop-hadoop/dfs/data/*" 2>/dev/null || true
+done
+sleep 2
+
+echo ""
 echo "=========================================="
 echo "✅ AMBIENTE PRONTO!"
 echo "=========================================="

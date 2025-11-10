@@ -44,6 +44,14 @@ copiar_config() {
   done
 }
 
+limpar_datanodes() {
+  echo -e "${YELLOW}🧹 Limpando dados antigos dos DataNodes...${NC}"
+  for worker in worker1 worker2; do
+    docker exec hadoop-$worker bash -c "rm -rf /tmp/hadoop-hadoop/dfs/data/*" 2>/dev/null || true
+  done
+  sleep 2
+}
+
 reiniciar_cluster() {
   echo -e "${YELLOW}🔄 Reiniciando cluster...${NC}"
   limpar_processos
@@ -55,9 +63,12 @@ reiniciar_cluster() {
   echo "Formatando HDFS..."
   docker exec -u hadoop hadoop-master bash -c "hdfs namenode -format -force" 2>&1 | tail -5
   
+  # Limpar dados antigos dos DataNodes para evitar incompatibilidade de clusterID
+  limpar_datanodes
+  
   echo "Iniciando HDFS..."
   docker exec -u hadoop hadoop-master bash -c "start-dfs.sh" 2>&1 | tail -10
-  sleep 10
+  sleep 15
   
   echo "Iniciando YARN..."
   docker exec -u hadoop hadoop-master bash -c "start-yarn.sh" 2>&1 | tail -10
@@ -140,8 +151,10 @@ copiar_config "$CONFIG_DIR/teste2_replicacao/hdfs-site.xml" "hdfs-site.xml" "mas
 sleep 2
 
 echo "  Formatando e iniciando HDFS..."
-docker exec -u hadoop hadoop-master bash -c "hdfs namenode -format -force && start-dfs.sh"
-sleep 10
+docker exec -u hadoop hadoop-master bash -c "hdfs namenode -format -force" 2>&1 | tail -5
+limpar_datanodes
+docker exec -u hadoop hadoop-master bash -c "start-dfs.sh"
+sleep 15
 
 bash "$DATASET_SCRIPT"
 run_test "teste2_replicacao" "dfs.replication=1"
@@ -157,8 +170,10 @@ copiar_config "$CONFIG_DIR/teste3_blocksize/hdfs-site.xml" "hdfs-site.xml" "mast
 sleep 2
 
 echo "  Formatando e iniciando HDFS..."
-docker exec -u hadoop hadoop-master bash -c "hdfs namenode -format -force && start-dfs.sh"
-sleep 10
+docker exec -u hadoop hadoop-master bash -c "hdfs namenode -format -force" 2>&1 | tail -5
+limpar_datanodes
+docker exec -u hadoop hadoop-master bash -c "start-dfs.sh"
+sleep 15
 
 bash "$DATASET_SCRIPT"
 run_test "teste3_blocksize" "dfs.blocksize=64MB"
