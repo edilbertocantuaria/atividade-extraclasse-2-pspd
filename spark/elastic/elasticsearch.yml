@@ -1,0 +1,13 @@
+# Elasticsearch configuration
+cluster.name: "spark-cluster"
+network.host: 0.0.0.0
+
+# Disable security for development
+xpack.security.enabled: false
+xpack.security.enrollment.enabled: false
+
+# Allow HTTP
+http.port: 9200
+
+# Discovery
+discovery.type: single-node
