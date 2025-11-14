@@ -1,36 +1,9 @@
 <?xml version="1.0"?>
 <configuration>
+    <!-- Configurações básicas do MapReduce -->
     <property>
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
-    </property>
-    <property>
-        <name>mapreduce.job.reduces</name>
-        <value>4</value>
-    </property>
-    <property>
-        <name>mapreduce.map.memory.mb</name>
-        <value>512</value>
-    </property>
-    <property>
-        <name>mapreduce.reduce.memory.mb</name>
-        <value>512</value>
-    </property>
-    <property>
-        <name>mapreduce.map.java.opts</name>
-        <value>-Xmx410m</value>
-    </property>
-    <property>
-        <name>mapreduce.reduce.java.opts</name>
-        <value>-Xmx410m</value>
-    </property>
-    <property>
-        <name>yarn.app.mapreduce.am.resource.mb</name>
-        <value>512</value>
-    </property>
-    <property>
-        <name>yarn.app.mapreduce.am.command-opts</name>
-        <value>-Xmx410m</value>
     </property>
     <property>
         <name>yarn.app.mapreduce.am.env</name>
@@ -44,24 +17,38 @@
         <name>mapreduce.reduce.env</name>
         <value>HADOOP_MAPRED_HOME=/home/hadoop/hadoop</value>
     </property>
+
+    <!-- TESTE 5: SPECULATIVE EXECUTION -->
+    <!-- Execução especulativa permite que o Hadoop execute cópias duplicadas 
+         de tasks lentas para acelerar o job. Útil quando há stragglers. -->
+    
     <property>
         <name>mapreduce.map.speculative</name>
         <value>true</value>
+        <description>Habilita execução especulativa para Map tasks</description>
     </property>
+    
     <property>
         <name>mapreduce.reduce.speculative</name>
         <value>true</value>
+        <description>Habilita execução especulativa para Reduce tasks</description>
     </property>
+    
     <property>
         <name>mapreduce.job.speculative.speculativecap</name>
         <value>0.1</value>
+        <description>Máximo 10% das tasks podem ser especulativas simultaneamente</description>
     </property>
+    
     <property>
         <name>mapreduce.job.speculative.slowtaskthreshold</name>
         <value>1.0</value>
+        <description>Task é considerada lenta se levar mais que 1x o tempo médio</description>
     </property>
+    
     <property>
         <name>mapreduce.job.speculative.minimum-allowed-tasks</name>
         <value>5</value>
+        <description>Mínimo de tasks completadas antes de iniciar especulação</description>
     </property>
 </configuration>

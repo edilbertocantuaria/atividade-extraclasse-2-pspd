@@ -49,6 +49,101 @@ cd atividade-extraclasse-2-pspd
 chmod +x scripts/*.sh
 ```
 
+## 📖 Guias de Uso
+
+### Hadoop (B1) - Guia Completo
+
+Ver documentação detalhada: **[docs/GUIA_EXECUCAO_HADOOP.md](docs/GUIA_EXECUCAO_HADOOP.md)**
+
+#### Início Rápido
+
+```bash
+# 1. Iniciar cluster Hadoop
+cd hadoop
+docker-compose up -d
+
+# 2. Executar TODOS os testes automaticamente
+cd ..
+./scripts/run_all_tests.sh
+```
+
+⏱️ **Duração total**: 30-40 minutos
+
+#### Testes Individuais
+
+```bash
+# Gerar dataset massivo (500MB, ~3-4min execução)
+./scripts/generate_large_dataset.sh 500
+
+# Testes de tolerância a falhas
+./scripts/test_fault_tolerance.sh
+
+# Testes de concorrência (2, 3, 4 jobs simultâneos)
+./scripts/test_concurrency.sh
+
+# Coletar métricas de um job
+./scripts/collect_metrics.sh <application_id> <output_dir> [dataset_mb]
+```
+
+#### O que está implementado
+
+✅ **5 Configurações Diferentes**:
+1. Teste 1: Memória YARN (`teste1_memoria/`)
+2. Teste 2: Replicação HDFS (`teste2_replicacao/`)
+3. Teste 3: Block Size (`teste3_blocksize/`)
+4. Teste 4: Número de Reducers (`teste4_reducers/`)
+5. **Teste 5: Speculative Execution** (`teste5_speculative/`) - **NOVO!**
+
+✅ **Testes de Tolerância a Falhas**:
+- Cenário 1: Baseline (sem falhas)
+- Cenário 2: Falha de 1 worker durante execução
+- Cenário 3: Falha de 2 workers durante execução
+- Cenário 4: Adição de worker durante execução (scale up)
+
+✅ **Testes de Concorrência**:
+- 2 jobs simultâneos
+- 3 jobs simultâneos
+- 4 jobs simultâneos (stress test)
+
+✅ **Dataset Massivo**:
+- Gerador automático de datasets (configurável)
+- 500MB padrão (garante 3-4+ minutos de execução)
+- 10 arquivos distribuídos para paralelização
+
+✅ **Coleta de Métricas Padronizada**:
+- Tempo total e por fase
+- Throughput (MB/s, MB/min, GB/hora)
+- Variação percentual vs baseline
+- Recursos utilizados (containers, memória, vCores)
+- Métricas em CSV para análise
+
+#### Resultados
+
+```
+resultados/B1/
+├── teste0_baseline/              # Referência
+├── teste1_memoria/               # Alteração de memória YARN
+├── teste2_replicacao/            # Alteração de replicação HDFS
+├── teste3_blocksize/             # Alteração de tamanho de bloco
+├── teste4_reducers/              # Alteração de número de reducers
+├── teste5_speculative/           # Execução especulativa (NOVO)
+├── teste_tolerancia_falhas/      # Cenários de falha
+│   └── run_TIMESTAMP/
+│       ├── relatorio_tolerancia_falhas.md
+│       ├── cluster_status_*.txt
+│       └── job_output_*.txt
+├── teste_concorrencia/           # Jobs simultâneos
+│   └── run_TIMESTAMP/
+│       ├── relatorio_concorrencia.md
+│       ├── metrics.csv
+│       └── cluster_monitoring.log
+└── relatorio_final_completo.md   # Consolidado
+```
+
+### Spark (B2) - Em Desenvolvimento
+
+Ver documentação: [docs/spark.md](docs/spark.md)
+
 ## 💻 Uso
 
 ### Hadoop (B1)
