@@ -43,7 +43,21 @@ build/
 # Hadoop/Spark outputs
 wordcount/output/*
 !wordcount/output/.gitkeep
-resultados/B1/*/
+
+# Ignorar outputs temporários mas manter resultados de testes
+resultados/B1/teste0_baseline/*.txt
+resultados/B1/teste0_baseline/*.csv
+resultados/B1/teste5_speculative/*.txt
+resultados/B1/teste5_speculative/*.csv
+resultados/B1/teste_concorrencia/*/job_*/job_output.txt
+resultados/B1/teste_tolerancia_falhas/*/job_*.log
+
+# Manter arquivos de resumo e evidências
+!resultados/B1/**/*.md
+!resultados/B1/**/*resumo*
+!resultados/B1/**/*RESUMO*
+!resultados/B1/**/*status*
+!resultados/B1/**/*STATUS*
 !resultados/B1/.gitkeep
 
 # Datasets temporários
