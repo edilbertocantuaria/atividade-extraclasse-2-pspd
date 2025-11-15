@@ -97,7 +97,7 @@ START_TIME=$(date +%s)
 
 # Executar job e capturar Application ID
 JOB_OUTPUT=$(docker exec hadoop-master bash -c "
-  hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_baseline 2>&1 | tee /tmp/job_baseline.log
+  su - hadoop -c '/home/hadoop/hadoop/bin/hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_baseline' 2>&1 | tee /tmp/job_baseline.log
 ")
 
 END_TIME=$(date +%s)
@@ -133,7 +133,7 @@ START_TIME=$(date +%s)
 
 # Iniciar job em background
 docker exec -d hadoop-master bash -c "
-  hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_scenario2 > /tmp/job_scenario2.log 2>&1
+  su - hadoop -c '/home/hadoop/hadoop/bin/hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_scenario2' > /tmp/job_scenario2.log 2>&1
 " > /dev/null
 
 sleep 2
@@ -202,7 +202,7 @@ START_TIME=$(date +%s)
 
 # Iniciar job em background
 docker exec -d hadoop-master bash -c "
-  hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_scenario3 > /tmp/job_scenario3.log 2>&1
+  su - hadoop -c '/home/hadoop/hadoop/bin/hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_scenario3' > /tmp/job_scenario3.log 2>&1
 " > /dev/null
 
 sleep 2
@@ -281,7 +281,7 @@ START_TIME=$(date +%s)
 
 # Iniciar job em background
 docker exec -d hadoop-master bash -c "
-  hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_scenario4 > /tmp/job_scenario4.log 2>&1
+  su - hadoop -c '/home/hadoop/hadoop/bin/hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH ${OUTPUT_PATH}_scenario4' > /tmp/job_scenario4.log 2>&1
 " > /dev/null
 
 sleep 2

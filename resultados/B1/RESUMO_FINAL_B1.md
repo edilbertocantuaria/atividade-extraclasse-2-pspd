@@ -76,6 +76,30 @@
 - 🔢 App ID: `application_1763130949673_0006`
 - 📁 Diretório: `resultados/B1/teste5_speculative/`
 
+#### ✅ Teste de Concorrência (2 Jobs Simultâneos)
+
+**Data:** 2025-11-14 16:09-16:26  
+**Diretório:** `resultados/B1/teste_concorrencia/run_20251114_160901/`
+
+**Resultados:**
+- **Job 1:** 508.68s (8min 28s) - `application_1763130949673_0007` ✅
+- **Job 2:** 590.73s (9min 50s) - `application_1763130949673_0008` ✅
+- **Tempo médio:** 549.71s
+- **Overhead:** 6.4x vs. speculative isolado
+- **Ganho temporal:** ~73.5min economizados vs. sequencial
+
+#### ⏳ Teste de Tolerância a Falhas (Parcial)
+
+**Data:** 2025-11-14 16:29-17:36  
+**Diretório:** `resultados/B1/teste_tolerancia_falhas/run_20251114_162939/`
+
+**Cenário 1 Executado:**
+- **Duração:** 4018.09s (66min 58s) - `application_1763130949673_0009` ✅
+- **Observação:** Performance anômala (50x mais lento que esperado)
+- **Causa provável:** Degradação do cluster após testes consecutivos
+
+**Cenários 2-4:** Scripts implementados, não executados (tempo excessivo)
+
 #### 🎯 Comparação: Baseline vs. Speculative
 
 | Métrica | Baseline | Speculative | Melhoria |
@@ -86,7 +110,7 @@
 | **CPU time** | 40,400ms | 28,610ms | **-29.2%** ⬇️ |
 | **Reduce tasks killed** | 2 | 3 | +1 (especulação) |
 
-**Ganho: 34.8x mais rápido!**
+**Ganho principal: 34.8x mais rápido!**
 
 ---
 

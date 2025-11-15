@@ -38,7 +38,7 @@ run_concurrent_job() {
     
     # Executar WordCount
     docker exec hadoop-master bash -c "
-      hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH $output_path 2>&1
+      su - hadoop -c '/home/hadoop/hadoop/bin/hadoop jar $HADOOP_EXAMPLES wordcount $INPUT_PATH $output_path' 2>&1
     " > "$output_dir/job_output.txt" 2>&1
     
     local end_time=$(date +%s.%N)
@@ -64,7 +64,7 @@ run_concurrent_job() {
     
     # Contar palavras no resultado
     docker exec hadoop-master bash -c "
-      hdfs dfs -cat $output_path/part-r-* 2>/dev/null | wc -l
+      su - hadoop -c 'hdfs dfs -cat $output_path/part-r-* 2>/dev/null | wc -l'
     " > "$output_dir/word_count.txt" 2>&1 || echo "0" > "$output_dir/word_count.txt"
     
     echo "[Job $job_id] ✓ Processamento concluído" | tee -a "$output_dir/timeline.txt"
