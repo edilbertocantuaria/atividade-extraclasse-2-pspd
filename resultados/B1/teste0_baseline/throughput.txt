@@ -1,0 +1,1 @@
+Throughput: .03 MB/s (1.80 MB/min)

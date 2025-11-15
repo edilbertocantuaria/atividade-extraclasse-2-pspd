@@ -1,0 +1,7 @@
+=== Comparação com Baseline ===
+
+Baseline Duration: 30s
+Current Duration: 2735.15s
+Variation: 9017.00%
+
+Performance: 9017.00% mais lento que baseline

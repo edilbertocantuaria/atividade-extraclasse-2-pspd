@@ -1,0 +1,16 @@
+=== Métricas de Performance ===
+
+Application ID: application_1763130949673_0006
+Start Time: 2025-11-14 13:07:19
+Finish Time: 2025-11-14 13:08:37
+Duration: 78.63s
+
+Dataset Size: 100 MB
+Throughput: 1.27 MB/s
+
+Status Final: SUCCEEDED
+Progress: 100%
+
+
+=== Contadores do Job ===
+Contadores não disponíveis

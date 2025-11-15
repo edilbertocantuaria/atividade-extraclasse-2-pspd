@@ -1,0 +1,5 @@
+Dataset Size: 100 MB
+Duration: 2735.15s
+Throughput: .03 MB/s
+Throughput: 1.80 MB/min
+Throughput: .10 GB/hour

@@ -1,0 +1,8 @@
+2025-11-14 19:09:07 INFO  JobResourceUploader:907 - Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hadoop/.staging/job_1763130949673_0008
+2025-11-14 19:09:08 INFO  FileInputFormat:300 - Total input files to process : 10
+2025-11-14 19:09:09 INFO  JobSubmitter:202 - number of splits:10
+2025-11-14 19:09:09 INFO  JobSubmitter:298 - Submitting tokens for job: job_1763130949673_0008
+2025-11-14 19:09:09 INFO  JobSubmitter:299 - Executing with tokens: []
+2025-11-14 19:09:10 INFO  Configuration:2854 - resource-types.xml not found
+2025-11-14 19:09:47 INFO  Job:1682 - The url to track the job: http://master:8088/proxy/application_1763130949673_0008/
+2025-11-14 19:09:47 INFO  Job:1727 - Running job: job_1763130949673_0008

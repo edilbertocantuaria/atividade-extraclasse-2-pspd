@@ -1,0 +1,1 @@
+Duração total: 78.63s (78633ms)

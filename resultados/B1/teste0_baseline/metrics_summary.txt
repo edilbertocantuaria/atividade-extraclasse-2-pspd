@@ -1,0 +1,39 @@
+============================================================
+RESUMO DE MÉTRICAS - Application application_1763130949673_0005
+============================================================
+
+TEMPORAL
+--------
+Duração Total: 2735.15s
+Início: 2025-11-14 11:49:04
+Fim: 2025-11-14 12:34:39
+
+THROUGHPUT
+----------
+Dataset: 100 MB
+Taxa: .03 MB/s
+Taxa: 1.80 MB/min
+
+COMPARATIVO
+-----------
+Variação vs Baseline: 9017.00%
+
+STATUS
+------
+Estado Final: SUCCEEDED
+Progresso: 100%
+
+ARQUIVOS GERADOS
+----------------
+- metrics_summary.txt (este arquivo)
+- metrics_summary.csv (formato CSV)
+- temporal_metrics.txt (métricas temporais)
+- throughput_metrics.txt (throughput)
+- phase_metrics.txt (fases Map/Reduce)
+- resource_metrics.txt (recursos alocados)
+- performance_metrics.txt (performance geral)
+- comparative_metrics.txt (comparação)
+
+============================================================
+Data: 2025-11-14 13:04:12
+============================================================

@@ -1,0 +1,25 @@
+2025-11-14 16:04:04 INFO  Configuration:2854 - resource-types.xml not found
+Application Report : 
+	Application-Id : application_1763130949673_0005
+	Application-Name : word count
+	Application-Type : MAPREDUCE
+	User : hadoop
+	Queue : default
+	Application Priority : 0
+	Start-Time : 1763131744756
+	Finish-Time : 1763134479915
+	Progress : 100%
+	State : FINISHED
+	Final-State : SUCCEEDED
+	Tracking-URL : http://worker1:19888/jobhistory/job/job_1763130949673_0005
+	RPC Port : 40783
+	AM Host : worker1
+	Aggregate Resource Allocation : 1656762 MB-seconds, 1610 vcore-seconds
+	Aggregate Resource Preempted : 0 MB-seconds, 0 vcore-seconds
+	Log Aggregation Status : DISABLED
+	Diagnostics : 
+	Unmanaged Application : false
+	Application Node Label Expression : <Not set>
+	AM container Node Label Expression : <DEFAULT_PARTITION>
+	TimeoutType : LIFETIME	ExpiryTime : UNLIMITED	RemainingTime : -1seconds
+
