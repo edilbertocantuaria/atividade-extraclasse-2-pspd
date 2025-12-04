@@ -1,8 +1,0 @@
-RESUMO COMPARATIVO
-==================
-TESTE                     CONFIGURAÇÃO                 STATUS         
-----------------------------------------------------------------------
-teste1_memoria            yarn.nodemanager.resource.memory-mb=1024 ✗ ERRO       
-teste2_replicacao         dfs.replication=1              ✗ ERRO       
-teste3_blocksize          dfs.blocksize=64MB             ✗ ERRO       
-teste4_reducers           mapreduce.job.reduces=4        ✗ ERRO       

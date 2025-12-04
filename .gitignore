@@ -74,3 +74,6 @@ local.properties
 test_output/
 tmp/
 temp/
+
+
+gerar_documento.py

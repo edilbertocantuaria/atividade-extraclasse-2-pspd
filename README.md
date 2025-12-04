@@ -7,326 +7,147 @@
 
 Projeto de estudo sobre processamento distribuído usando Hadoop e Spark em containers Docker.
 
-> 📘 **Documentação Adicional**: [CHANGELOG](CHANGELOG.md) | [CONTRIBUTING](CONTRIBUTING.md) | [SUMMARY](SUMMARY.md)
+> 🚀 **[GUIA COMPLETO DE EXECUÇÃO](como_executar.md)** - Instruções detalhadas passo a passo para executar todo o projeto do zero
 
 ## 📋 Índice
 
 - [Visão Geral](#visão-geral)
+- [Início Rápido](#início-rápido)
 - [Requisitos](#requisitos)
-- [Instalação](#instalação)
-- [Uso](#uso)
-  - [Hadoop (B1)](#hadoop-b1)
-  - [Spark (B2)](#spark-b2)
-- [Arquitetura](#arquitetura)
-- [Testes](#testes)
-- [Resultados](#resultados)
+- [Estrutura do Projeto](#estrutura-do-projeto)
 - [Documentação](#documentação)
 
 ## 🎯 Visão Geral
 
-Este projeto implementa e testa clusters Hadoop e Spark para análise de desempenho com diferentes configurações. Inclui:
+Este projeto implementa e testa clusters Hadoop e Spark para análise de desempenho com diferentes configurações.
 
-- **Hadoop**: Cluster com 1 master + 2 workers para testes MapReduce
-- **Spark**: Ambiente integrado com Kafka, Elasticsearch e Kibana
-- **Testes automatizados**: Scripts para avaliar impacto de configurações
-- **Análise de falhas**: Testes de resiliência e recuperação
+### Implementações
+
+**B1 - Hadoop MapReduce**
+- Cluster distribuído (1 master + 2 workers)
+- 5 configurações diferentes testadas
+- Testes de tolerância a falhas
+- Testes de concorrência
+- Dataset massivo (500MB+)
+
+**B2 - Spark Streaming**
+- Pipeline de processamento em tempo real
+- Integração Kafka + Elasticsearch + Kibana
+- Producer/Consumer autocontidos
+- Dashboard de visualização
+
+**Extensão ML (Opcional)**
+- Análise de sentimentos com VADER
+- Classificação automática de polaridade
+- Visualizações enriquecidas no Kibana
+
+## ⚡ Início Rápido
+
+### B1 - Hadoop (3 comandos)
+```bash
+cd hadoop && docker-compose up -d
+cd .. && ./scripts/run_all_tests.sh
+cat resultados/B1/RELATORIO_FINAL_COMPLETO.md
+```
+
+### B2 - Spark (2 passos)
+```bash
+cd spark && docker-compose up -d
+# Abrir spark/notebooks/B2_SPARK_STREAMING_COMPLETO.ipynb e executar células
+```
+
+> 📖 **Para instruções detalhadas**, consulte **[como_executar.md](como_executar.md)**
 
 ## ⚙️ Requisitos
 
 - Docker 20.10+
 - Docker Compose 2.0+
+- Python 3.8+
 - 8GB RAM disponível
 - 20GB espaço em disco
-
-## 🚀 Instalação
-
-```bash
-# Clone o repositório
-git clone https://github.com/edilbertocantuaria/atividade-extraclasse-2-pspd.git
-cd atividade-extraclasse-2-pspd
-
-# Tornar scripts executáveis
-chmod +x scripts/*.sh
-```
-
-## 📖 Guias de Uso
-
-### Hadoop (B1) - Guia Completo
-
-Ver documentação detalhada: **[docs/GUIA_EXECUCAO_HADOOP.md](docs/GUIA_EXECUCAO_HADOOP.md)**
-
-#### Início Rápido
-
-```bash
-# 1. Iniciar cluster Hadoop
-cd hadoop
-docker-compose up -d
-
-# 2. Executar TODOS os testes automaticamente
-cd ..
-./scripts/run_all_tests.sh
-```
-
-⏱️ **Duração total**: 30-40 minutos
-
-#### Testes Individuais
-
-```bash
-# Gerar dataset massivo (500MB, ~3-4min execução)
-./scripts/generate_large_dataset.sh 500
-
-# Testes de tolerância a falhas
-./scripts/test_fault_tolerance.sh
-
-# Testes de concorrência (2, 3, 4 jobs simultâneos)
-./scripts/test_concurrency.sh
-
-# Coletar métricas de um job
-./scripts/collect_metrics.sh <application_id> <output_dir> [dataset_mb]
-```
-
-#### O que está implementado
-
-✅ **5 Configurações Diferentes**:
-1. Teste 1: Memória YARN (`teste1_memoria/`)
-2. Teste 2: Replicação HDFS (`teste2_replicacao/`)
-3. Teste 3: Block Size (`teste3_blocksize/`)
-4. Teste 4: Número de Reducers (`teste4_reducers/`)
-5. **Teste 5: Speculative Execution** (`teste5_speculative/`) - **NOVO!**
-
-✅ **Testes de Tolerância a Falhas**:
-- Cenário 1: Baseline (sem falhas)
-- Cenário 2: Falha de 1 worker durante execução
-- Cenário 3: Falha de 2 workers durante execução
-- Cenário 4: Adição de worker durante execução (scale up)
-
-✅ **Testes de Concorrência**:
-- 2 jobs simultâneos
-- 3 jobs simultâneos
-- 4 jobs simultâneos (stress test)
-
-✅ **Dataset Massivo**:
-- Gerador automático de datasets (configurável)
-- 500MB padrão (garante 3-4+ minutos de execução)
-- 10 arquivos distribuídos para paralelização
-
-✅ **Coleta de Métricas Padronizada**:
-- Tempo total e por fase
-- Throughput (MB/s, MB/min, GB/hora)
-- Variação percentual vs baseline
-- Recursos utilizados (containers, memória, vCores)
-- Métricas em CSV para análise
-
-#### Resultados
-
-```
-resultados/B1/
-├── teste0_baseline/              # Referência
-├── teste1_memoria/               # Alteração de memória YARN
-├── teste2_replicacao/            # Alteração de replicação HDFS
-├── teste3_blocksize/             # Alteração de tamanho de bloco
-├── teste4_reducers/              # Alteração de número de reducers
-├── teste5_speculative/           # Execução especulativa (NOVO)
-├── teste_tolerancia_falhas/      # Cenários de falha
-│   └── run_TIMESTAMP/
-│       ├── relatorio_tolerancia_falhas.md
-│       ├── cluster_status_*.txt
-│       └── job_output_*.txt
-├── teste_concorrencia/           # Jobs simultâneos
-│   └── run_TIMESTAMP/
-│       ├── relatorio_concorrencia.md
-│       ├── metrics.csv
-│       └── cluster_monitoring.log
-└── relatorio_final_completo.md   # Consolidado
-```
-
-### Spark (B2) - Em Desenvolvimento
-
-Ver documentação: [docs/spark.md](docs/spark.md)
-
-## 💻 Uso
-
-### Hadoop (B1)
-
-#### Iniciar Cluster
-
-```bash
-./scripts/setup.sh
-```
-
-Interfaces disponíveis:
-- **HDFS UI**: http://localhost:9870
-- **YARN UI**: http://localhost:8088
-
-#### Executar Testes
-
-```bash
-./scripts/run_tests.sh
-```
-
-Os testes avaliam o impacto de:
-1. **Memória YARN** (1024MB vs padrão)
-2. **Replicação HDFS** (1 vs 2 réplicas)
-3. **Block Size** (64MB vs 128MB)
-4. **Reducers** (1, 2, 4 reducers)
-
-#### Limpar Ambiente
-
-```bash
-./scripts/cleanup.sh
-```
-
-### Spark (B2)
-
-#### Iniciar Ambiente Spark
-
-```bash
-cd spark
-docker compose up -d
-```
-
-Interfaces disponíveis:
-- **Spark UI**: http://localhost:8080
-- **Kibana**: http://localhost:5601
-- **Jupyter**: http://localhost:8888
-
-#### Executar Testes Spark
-
-```bash
-./spark/testar_ambiente.sh
-```
-
-## 🏗️ Arquitetura
-
-### Hadoop Cluster
-
-```
-┌─────────────────┐
-│  hadoop-master  │
-│  - NameNode     │
-│  - ResourceMgr  │
-└────────┬────────┘
-         │
-    ┌────┴────┐
-    │         │
-┌───▼──┐  ┌──▼───┐
-│worker1│  │worker2│
-│DataNode│ │DataNode│
-│NodeMgr │ │NodeMgr │
-└───────┘  └───────┘
-```
-
-### Configurações Principais
-
-| Componente | Arquivo | Configuração Principal |
-|------------|---------|------------------------|
-| HDFS | `hdfs-site.xml` | Replicação: 2, BlockSize: 128MB |
-| YARN | `yarn-site.xml` | Memory: 2048MB por NodeManager |
-| MapReduce | `mapred-site.xml` | Framework: YARN |
-
-## 🧪 Testes
-
-### B1 - Testes Hadoop
-
-Os testes usam WordCount em um dataset gerado automaticamente:
-
-```bash
-# Verificar ambiente antes de testar
-./scripts/verify.sh
-
-# Executar todos os testes B1
-./scripts/run_tests.sh
-```
-
-**Métricas coletadas:**
-- Tempo total de execução
-- Tempo de Map
-- Tempo de Reduce
-- CPU e Memória usadas
-- Bytes lidos/escritos HDFS
-
-### B2 - Testes Spark
-
-Testes com streaming Kafka e visualização:
-
-```bash
-cd spark
-./testar_ambiente.sh
-```
-
-## 📊 Resultados
-
-Os resultados são salvos automaticamente em:
-
-```
-resultados/
-├── B1/
-│   ├── teste1_memoria/
-│   ├── teste2_replicacao/
-│   ├── teste3_blocksize/
-│   ├── teste4_reducers/
-│   ├── resumo_comparativo.txt
-│   └── relatorio_consolidado.txt
-└── ...
-
-resultados_spark/
-├── relatorio_final_spark.md
-├── testes_graficos.md
-└── VALIDACAO_B2.md
-```
-
-### Visualizar Resultados
-
-```bash
-# Resumo comparativo dos testes B1
-cat resultados/B1/resumo_comparativo.txt
-
-# Relatório detalhado
-cat resultados/B1/relatorio_consolidado.txt
-
-# Resultados Spark
-cat resultados_spark/relatorio_final_spark.md
-```
-
-## 📚 Documentação
-
-Documentação detalhada disponível em [`docs/`](docs/):
-
-- [**Hadoop**](docs/hadoop.md): Arquitetura, configurações e troubleshooting
-- [**Spark**](docs/spark.md): Setup do ambiente integrado com Kafka/Elastic
-- [**Testes**](docs/tests.md): Metodologia e análise de resultados
 
 ## 🛠️ Estrutura do Projeto
 
 ```
-.
-├── README.md                  # Este arquivo
-├── scripts/                   # Scripts principais
-│   ├── setup.sh              # Iniciar cluster Hadoop
-│   ├── run_tests.sh          # Executar testes B1
-│   ├── cleanup.sh            # Limpar ambiente
-│   └── verify.sh             # Verificar configurações
-├── hadoop/                    # Configurações Hadoop
+atividade-extraclasse-2-pspd/
+├── como_executar.md           # 📖 GUIA PRINCIPAL DE EXECUÇÃO
+├── README.md                  # Este arquivo (visão geral)
+├── STATUS_IMPLEMENTACAO.md    # Status das implementações B1/B2
+│
+├── hadoop/                    # B1: Cluster Hadoop
 │   ├── docker-compose.yml
 │   ├── Dockerfile
-│   └── master/worker1/worker2/ # Configs XML por nó
-├── spark/                     # Ambiente Spark
-│   ├── docker-compose.yml
-│   └── spark_app/
-├── config/                    # Configurações de teste
+│   └── master/worker1/worker2/
+│
+├── spark/                     # B2: Spark Streaming
+│   ├── docker-compose.yml     # Kafka + ES + Kibana
+│   └── notebooks/
+│       └── B2_SPARK_STREAMING_COMPLETO.ipynb  # Notebook principal (65 células)
+│
+├── scripts/                   # Scripts de teste e automação
+│   ├── run_all_tests.sh       # Executar todos os testes B1
+│   ├── test_fault_tolerance.sh
+│   ├── test_concurrency.sh
+│   └── collect_metrics.sh
+│
+├── config/                    # Configurações XML por teste
 │   ├── teste1_memoria/
 │   ├── teste2_replicacao/
 │   ├── teste3_blocksize/
-│   └── teste4_reducers/
-├── resultados/                # Outputs dos testes
-├── docs/                      # Documentação detalhada
-└── wordcount/                 # Aplicação WordCount
-
+│   ├── teste4_reducers/
+│   └── teste5_speculative/
+│
+├── resultados/B1/             # Resultados Hadoop
+│   ├── RELATORIO_FINAL_COMPLETO.md
+│   ├── teste0_baseline/
+│   ├── teste1_memoria/
+│   ├── teste2_replicacao/
+│   ├── teste3_blocksize/
+│   ├── teste4_reducers/
+│   ├── teste5_speculative/
+│   ├── teste_tolerancia_falhas/
+│   └── teste_concorrencia/
+│
+├── resultados_spark/          # Resultados Spark
+│   ├── IMPLEMENTACAO_B2_COMPLETA.md
+│   ├── VALIDACAO_B2_DETALHADA.md
+│   ├── EXTENSAO_ML_SENTIMENTOS.md
+│   └── kibana_*.png           # Screenshots (pendente)
+│
+└── docs/                      # Documentação técnica adicional
+    ├── hadoop.md
+    ├── spark.md
+    └── tests.md
 ```
+
+## 📚 Documentação
+
+### Documentação Principal
+- **[como_executar.md](como_executar.md)** - 🚀 Guia completo de execução passo a passo (B1 + B2 + ML)
+- **[STATUS_IMPLEMENTACAO.md](STATUS_IMPLEMENTACAO.md)** - Status e checklist das implementações
+
+### Documentação B1 (Hadoop)
+- **[resultados/B1/RELATORIO_FINAL_COMPLETO.md](resultados/B1/RELATORIO_FINAL_COMPLETO.md)** - Relatório consolidado dos testes
+- **[docs/hadoop.md](docs/hadoop.md)** - Documentação técnica Hadoop
+
+### Documentação B2 (Spark)
+- **[resultados_spark/IMPLEMENTACAO_B2_COMPLETA.md](resultados_spark/IMPLEMENTACAO_B2_COMPLETA.md)** - Documentação detalhada da implementação
+- **[resultados_spark/VALIDACAO_B2_DETALHADA.md](resultados_spark/VALIDACAO_B2_DETALHADA.md)** - Checklist de validação
+- **[resultados_spark/EXTENSAO_ML_SENTIMENTOS.md](resultados_spark/EXTENSAO_ML_SENTIMENTOS.md)** - Documentação da extensão ML
+- **[docs/spark.md](docs/spark.md)** - Documentação técnica Spark
+
+## 📞 Suporte
+
+Para executar o projeto, consulte primeiro **[como_executar.md](como_executar.md)**.
+
+Para troubleshooting:
+1. Verificar seção de troubleshooting em `como_executar.md`
+2. Consultar logs dos containers: `docker logs <container-name>`
+3. Verificar documentação técnica específica em `docs/`
 
 ## 📝 Licença
 
-Este é um projeto acadêmico para a disciplina de Programação para Sistemas Paralelos e Distribuídos.
+Projeto acadêmico - Disciplina de Programação para Sistemas Paralelos e Distribuídos.
 
 ## 👤 Autor
 
@@ -334,4 +155,4 @@ Este é um projeto acadêmico para a disciplina de Programação para Sistemas P
 
 ---
 
-**Última atualização**: Novembro 2025
+**Última atualização**: 29/11/2025

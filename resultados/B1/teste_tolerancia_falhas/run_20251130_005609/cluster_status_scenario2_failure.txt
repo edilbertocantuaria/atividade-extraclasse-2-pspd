@@ -1,0 +1,20 @@
+=== Status do Cluster - scenario2_failure ===
+Timestamp: 2025-11-30 21:54:06
+
+Containers Docker ativos:
+NAMES            STATUS
+hadoop-worker1   Up 25 hours
+hadoop-master    Up 25 hours
+
+Nós YARN ativos:
+Total Nodes:3
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+   worker2:42165	        RUNNING	     worker2:8042	                           1
+   worker1:36931	        RUNNING	     worker1:8042	                           1
+   worker2:39857	           LOST	     worker2:8042	                           0
+
+DataNodes HDFS ativos:
+Live datanodes (2):
+Name: 192.168.176.3:9866 (hadoop-worker1.hadoop-net)
+Name: 192.168.176.4:9866 (192.168.176.4)
+

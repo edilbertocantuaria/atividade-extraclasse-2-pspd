@@ -1,0 +1,20 @@
+=== Status do Cluster - baseline_before ===
+Timestamp: 2025-11-29 21:24:53
+
+Containers Docker ativos:
+NAMES            STATUS
+hadoop-worker2   Up About an hour
+hadoop-worker1   Up About an hour
+hadoop-master    Up About an hour
+
+Nós YARN ativos:
+Total Nodes:2
+         Node-Id	     Node-State	Node-Http-Address	Number-of-Running-Containers
+   worker2:39857	        RUNNING	     worker2:8042	                           0
+   worker1:36931	        RUNNING	     worker1:8042	                           0
+
+DataNodes HDFS ativos:
+Live datanodes (2):
+Name: 192.168.176.3:9866 (hadoop-worker1.hadoop-net)
+Name: 192.168.176.4:9866 (hadoop-worker2.hadoop-net)
+

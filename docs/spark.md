@@ -1,4 +1,8 @@
-# Documentação Spark
+# Documentação Técnica - Spark
+
+> 🚀 **Para instruções de execução**, consulte **[como_executar.md](../como_executar.md)**
+
+> Esta documentação contém detalhes técnicos sobre arquitetura e configurações Spark Streaming.
 
 ## 🏗️ Arquitetura
 

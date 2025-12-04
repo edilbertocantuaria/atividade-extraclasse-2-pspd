@@ -1,4 +1,8 @@
-# Documentação Hadoop
+# Documentação Técnica - Hadoop
+
+> 🚀 **Para instruções de execução**, consulte **[como_executar.md](../como_executar.md)**
+
+> Esta documentação contém detalhes técnicos sobre arquitetura e configurações Hadoop.
 
 ## 🏗️ Arquitetura
 
